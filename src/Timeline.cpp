@@ -11,11 +11,13 @@ typedef LinearTweenForm<int,1> LinearIntForm;
 typedef LinearTweenForm<float,1> LinearFloatForm;
 
 Timeline::Timeline() : tickers() {
-    for (set<ITicker*>::iterator it = tickers.begin(); it != tickers.end(); it++)
-        (*it)->stop();
 }
 
 Timeline::~Timeline() {
+    for (set<ITicker*>::iterator it = tickers.begin(); it != tickers.end(); it++) {
+        ITicker *ticker = *it;
+        ticker->stop();
+    }
 }
 
 void Timeline::register_ticker(ITicker *ticker) {

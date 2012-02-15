@@ -72,8 +72,10 @@ void test_Timeline() { // 4 tests
     ok(ticker.last_now == 1, "tick 1 now");
 
     timeline.tick(3);
-    ok(ticker.tick_count == 2, "tick 1 count");
-    ok(ticker.last_now == 3, "tick 1 now");
+    ok(ticker.tick_count == 2, "tick 3 count");
+    ok(ticker.last_now == 3, "tick 3 now");
+
+    timeline.unregister_ticker(&ticker);
 }
 
 // -----------------------------------------------------------------------------
