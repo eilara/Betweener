@@ -1,5 +1,6 @@
 
 SOURCES     = Vector.cpp                    \
+				easing.cpp                  \
 				IProxy.cpp                  \
 				ITicker.cpp                 \
 				ICompleter.cpp              \

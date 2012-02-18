@@ -3,6 +3,7 @@
 #include "Types.h"
 #include "Vector.h"
 #include "VectorTypes.h"
+#include "easing.h"
 #include "IProxy.h"
 #include "ICompleter.h"
 #include "Ticker.h"
@@ -167,7 +168,7 @@ void test_Tween() { // 2 tests
     LinearTweenForm2i  *form = new LinearTweenForm2i(proxy, from, to);
 
     Timeline timeline;
-    Tween tween(&timeline, completer, form, 10);
+    Tween tween(&timeline, completer, form, 10, EaseLinear);
 
     tween.start(1);
     timeline.tick(3);
@@ -195,7 +196,7 @@ void test_tween_int() { // 1 test
     MockProxy1i       *proxy = new MockProxy1i();
     MockCompleter *completer = new MockCompleter();
     Timeline timeline;
-    Tween *tween = timeline.build_int_tween(proxy, completer, 10, 1, 100);
+    Tween *tween = timeline.build_int_tween(proxy, completer, 10, 1, 100, EaseLinear);
 
     tween->start(0);
     timeline.tick(5);

@@ -32,17 +32,17 @@ void Timeline::tick(Uint32 now) {
 }
 
 Tween *Timeline::build_int_tween(IProxy<int,1> *proxy, ICompleter *completer,
-                                 int duration, int from, int to) {
+                                 int duration, int from, int to, int ease_type) {
     Vector1i from_v = { {from} };                 
     Vector1i to_v   = { {to} };                 
     LinearIntForm *form = new LinearIntForm(proxy, from_v, to_v);
-    return new Tween(this, completer, form, duration);
+    return new Tween(this, completer, form, duration, ease_type);
 }
 
 Tween *Timeline::build_float_tween(IProxy<float,1> *proxy, ICompleter *completer,
-                                   int duration, float from, float to) {
+                                   int duration, float from, float to, int ease_type) {
     Vector1f from_v = { {from} };                 
     Vector1f to_v   = { {to} };                 
     LinearFloatForm *form = new LinearFloatForm(proxy, from_v, to_v);
-    return new Tween(this, completer, form, duration);
+    return new Tween(this, completer, form, duration, ease_type);
 }

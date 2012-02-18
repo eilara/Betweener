@@ -21,9 +21,9 @@ class Timeline : public IClock {
         void tick(Uint32 now);
 
         Tween   *build_int_tween(IProxy<int,1> *proxy, ICompleter *completer,
-                                 int duration, int from, int to);
+                                 int duration, int from, int to, int ease_type);
         Tween *build_float_tween(IProxy<float,1> *proxy, ICompleter *completer,
-                                 int duration, float from, float to);
+                                 int duration, float from, float to, int ease_type);
     private:
         std::set<ITicker*> tickers;
        

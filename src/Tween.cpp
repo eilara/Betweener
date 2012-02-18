@@ -2,16 +2,18 @@
 #include <stdlib.h>
 #include <iostream>
 #include "Tween.h"
+#include "easing.h"
 
 Tween::Tween(IClock *clock, ICompleter *completer,
-             ITweenForm *form, Uint32 duration) :
+             ITweenForm *form, Uint32 duration, int ease_type) :
     Ticker(clock, completer),
     form(form),
     duration(duration),
     cycle_start_time(0),
     last_cycle_complete_time(0),
     pause_start_time(0),
-    total_pause_time(0) {
+    total_pause_time(0),
+    ease_func(Get_Ease(ease_type)) {
 }
 
 Tween::~Tween() {
@@ -52,7 +54,8 @@ void Tween::on_tick(Uint32 now) {
         elapsed = duration;
     }
     float t_normal = (float) elapsed / duration;
-    form->tick(t_normal);
+    float eased    = ease_func(t_normal);
+    form->tick(eased);
 
     if (!is_active() || !is_complete) { return; }
 

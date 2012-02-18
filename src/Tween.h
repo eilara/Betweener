@@ -11,7 +11,8 @@
 class Tween : public Ticker {
 
     public:
-        Tween(IClock *clock, ICompleter *completer, ITweenForm *form, Uint32 duration);
+        Tween(IClock *clock, ICompleter *completer, ITweenForm *form,
+              Uint32 duration, int ease_type);
         ~Tween();
         void start   (Uint32 now);
         void stop    ();
@@ -26,7 +27,7 @@ class Tween : public Ticker {
         Uint32       last_cycle_complete_time;
         Uint32       pause_start_time;
         Uint32       total_pause_time;
-
+        float       (*ease_func) (float);
  
 };
 
