@@ -20,8 +20,10 @@ class Timeline : public IClock {
         void unregister_ticker(ITicker *ticker);
         void tick(Uint32 now);
 
-        Tween *tween_int(IProxy<int,1> *proxy, ICompleter *completer,
-                         int duration, int from, int to);
+        Tween   *build_int_tween(IProxy<int,1> *proxy, ICompleter *completer,
+                                 int duration, int from, int to);
+        Tween *build_float_tween(IProxy<float,1> *proxy, ICompleter *completer,
+                                 int duration, float from, float to);
     private:
         std::set<ITicker*> tickers;
        

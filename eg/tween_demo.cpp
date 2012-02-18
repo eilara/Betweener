@@ -195,7 +195,7 @@ void test_tween_int() { // 1 test
     MockProxy1i       *proxy = new MockProxy1i();
     MockCompleter *completer = new MockCompleter();
     Timeline timeline;
-    Tween *tween = timeline.tween_int(proxy, completer, 10, 1, 100);
+    Tween *tween = timeline.build_int_tween(proxy, completer, 10, 1, 100);
 
     tween->start(0);
     timeline.tick(5);
