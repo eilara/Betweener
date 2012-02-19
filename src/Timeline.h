@@ -15,7 +15,7 @@ class Timeline : public IClock {
 
     public:
         Timeline();
-        ~Timeline();
+        virtual ~Timeline();
         void   register_ticker(ITicker *ticker);
         void unregister_ticker(ITicker *ticker);
         void tick(Uint32 now);
