@@ -4,6 +4,7 @@
 #include "Vector.h"
 #include "VectorTypes.h"
 #include "easing.h"
+#include "CycleControl.h"
 #include "IProxy.h"
 #include "ICompleter.h"
 #include "Ticker.h"
@@ -166,9 +167,9 @@ void test_Tween() { // 2 tests
     MockProxy         *proxy = new MockProxy();
     MockCompleter *completer = new MockCompleter();
     LinearTweenForm2i  *form = new LinearTweenForm2i(proxy, from, to);
-
+    CycleControl    *control = new CycleControl(false, 1, false, false);
     Timeline timeline;
-    Tween tween(&timeline, completer, form, 10, EaseLinear);
+    Tween tween(&timeline, completer, form, 10, EaseLinear, control);
 
     tween.start(1);
     timeline.tick(3);
@@ -195,8 +196,10 @@ void test_tween_int() { // 1 test
     diag("tween_int");
     MockProxy1i       *proxy = new MockProxy1i();
     MockCompleter *completer = new MockCompleter();
+    CycleControl    *control = new CycleControl(false, 1, false, false);
     Timeline timeline;
-    Tween *tween = timeline.build_int_tween(proxy, completer, 10, 1, 100, EaseLinear);
+    Tween *tween = timeline.build_int_tween
+        (proxy, completer, 10, 1, 100, EaseLinear, control);
 
     tween->start(0);
     timeline.tick(5);

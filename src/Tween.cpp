@@ -5,9 +5,11 @@
 #include "easing.h"
 
 Tween::Tween(IClock *clock, ICompleter *completer,
-             ITweenForm *form, Uint32 duration, int ease_type) :
+             ITweenForm *form, Uint32 duration, int ease_type,
+             CycleControl *control) :
     Ticker(clock, completer),
     form(form),
+    control(control),
     duration(duration),
     cycle_start_time(0),
     last_cycle_complete_time(0),
@@ -18,12 +20,14 @@ Tween::Tween(IClock *clock, ICompleter *completer,
 
 Tween::~Tween() {
     delete form;
+    delete control;
 }
 
 void Tween::start(Uint32 now) {
     Ticker::start(now);
     cycle_start_time = now;
     last_cycle_complete_time = 0;
+    control->animation_started();
     form->start(0);
 }
 
@@ -58,6 +62,8 @@ void Tween::on_tick(Uint32 now) {
     form->tick(eased);
 
     if (!is_active() || !is_complete) { return; }
+
+    control->cycle_complete();
 
     stop();
     on_complete(last_cycle_complete_time);
