@@ -11,8 +11,8 @@ CycleControl::CycleControl(bool forever, int repeat, bool bounce, bool reverse) 
 }
 
 void CycleControl::animation_started() {
-    repeat_counter  = repeat;
-    _is_reversed    = reverse;
+    repeat_counter = repeat;
+    _is_reversed   = reverse;
 }
 
 void CycleControl::cycle_complete() {

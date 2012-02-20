@@ -2,6 +2,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
+#include <math.h>
 #include <stdlib.h>
 #include <algorithm>
 #include <iostream>
@@ -48,10 +49,17 @@ Vector<T,DIM> operator- (const Vector<T,DIM>& lhs, const Vector<T,DIM>& rhs) {
     return res;
 }
 
-template<typename T,int DIM>
-Vector<T,DIM> operator* (const Vector<T,DIM>& t, float k) {
-    Vector<T,DIM> res;
-    for (unsigned i=0; i<DIM; ++i) { res[i] = t[i] * k; }
+template<int DIM>
+Vector<int,DIM> operator* (const Vector<int,DIM>& t, float k) {
+    Vector<int,DIM> res;
+    for (unsigned i=0; i<DIM; ++i) { res[i] = (int) round(k * (float) t[i]); }
+    return res;
+}
+
+template<int DIM>
+Vector<float,DIM> operator* (const Vector<float,DIM>& t, float k) {
+    Vector<float,DIM> res;
+    for (unsigned i=0; i<DIM; ++i) { res[i] = k * t[i]; }
     return res;
 }
 

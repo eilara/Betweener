@@ -199,7 +199,7 @@ void test_tween_int() { // 1 test
     CycleControl    *control = new CycleControl(false, 1, false, false);
     Timeline timeline;
     Tween *tween = timeline.build_int_tween
-        (proxy, completer, 10, 1, 100, EaseLinear, control);
+        (proxy, completer, 10, 0, 100, EaseLinear, control);
 
     tween->start(0);
     timeline.tick(5);

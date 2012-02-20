@@ -25,10 +25,11 @@ Tween::~Tween() {
 
 void Tween::start(Uint32 now) {
     Ticker::start(now);
+    control->animation_started();
+
     cycle_start_time = now;
     last_cycle_complete_time = 0;
-    control->animation_started();
-    form->start(0);
+    form->start(control->is_reversed()? 1 :0);
 }
 
 void Tween::stop() {
@@ -59,13 +60,20 @@ void Tween::on_tick(Uint32 now) {
     }
     float t_normal = (float) elapsed / duration;
     float eased    = ease_func(t_normal);
+    if (control->is_reversed()) eased = 1 - eased;
     form->tick(eased);
 
     if (!is_active() || !is_complete) { return; }
 
     control->cycle_complete();
 
-    stop();
-    on_complete(last_cycle_complete_time);
+    if (control->is_animation_complete()) {
+        stop();
+        on_complete(last_cycle_complete_time);
+        return;
+    }
+
+    cycle_start_time += elapsed;
+    last_cycle_complete_time = 0;
 }
 
