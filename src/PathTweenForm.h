@@ -1,32 +1,30 @@
 
-#ifndef LINEARTWEENFORM_H
-#define LINEARTWEENFORM_H
+#ifndef PATHTWEENFORM_H
+#define PATHTWEENFORM_H
 
 #include <stdlib.h>
 #include <iostream>
 #include "Vector.h"
 #include "IProxy.h"
+#include "IPath.h"
 #include "ITweenForm.h"
 
-template<typename T,int DIM>
-class LinearTweenForm : public ITweenForm {
+class PathTweenForm : public ITweenForm {
 
     public:
 
-        LinearTweenForm(
-            IProxy<T,DIM> *proxy,
-            Vector<T,DIM> &from,
-            Vector<T,DIM> &to
+        PathTweenForm(
+            IProxy<int,2> *proxy,
+            IPath *path
         ) : proxy(proxy),
-            from(from),
-            to(to),
-            diff(to - from),
+            path(path),
             value(),
             last_value() {
         }
 
-        ~LinearTweenForm() {
+        ~PathTweenForm() {
             delete proxy;
+            delete path;
         }
 
         void start(float t) {
@@ -45,15 +43,15 @@ class LinearTweenForm : public ITweenForm {
 
     private:
 
-        void compute_value(float t) { value = from + diff * t; }
+        void compute_value(float t) { value = path->solve(t); }
 
         void store_last_value() { last_value = value; }
 
         void update() { proxy->update(value); }
 
-        IProxy<T,DIM> *proxy;
-
-        Vector<T,DIM> from, to, diff, value, last_value;
+        IProxy<int,2> *proxy;
+        IPath         *path;
+        Vector<int,2> value, last_value;
 };
 
 #endif

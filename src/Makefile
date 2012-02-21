@@ -10,6 +10,9 @@ SOURCES     = Vector.cpp                    \
 				Ticker.cpp                  \
 				ITweenForm.cpp              \
 				LinearTweenForm.cpp         \
+				IPath.cpp                   \
+				LinearPath.cpp              \
+				PathTweenForm.cpp           \
 				Tween.cpp
 LIB         = libbetweener.so
 INCLUDEDIRS =
