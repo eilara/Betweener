@@ -9,6 +9,7 @@
 #include "CycleControl.h"
 #include "IClock.h"
 #include "IProxy.h"
+#include "IPath.h"
 #include "ICompleter.h"
 #include "Tween.h"
 
@@ -27,6 +28,10 @@ class Timeline : public IClock {
         Tween *build_float_tween(IProxy<float,1> *proxy, ICompleter *completer,
                                  int duration, float from, float to, int ease_type,
                                  CycleControl *control);
+
+        Tween *build_path_tween(IProxy<int,2> *proxy, ICompleter *completer,
+                                int duration, IPath *path, int ease_type,
+                                CycleControl *control);
     private:
         std::set<ITicker*> tickers;
        

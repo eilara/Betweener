@@ -4,6 +4,7 @@
 #include <set>
 #include "Timeline.h"
 #include "LinearTweenForm.h"
+#include "PathTweenForm.h"
 
 using namespace std;
 
@@ -46,5 +47,12 @@ Tween *Timeline::build_float_tween(IProxy<float,1> *proxy, ICompleter *completer
     Vector1f from_v = { {from} };                 
     Vector1f to_v   = { {to} };                 
     LinearFloatForm *form = new LinearFloatForm(proxy, from_v, to_v);
+    return new Tween(this, completer, form, duration, ease_type, control);
+}
+
+Tween *Timeline::build_path_tween(IProxy<int,2> *proxy, ICompleter *completer,
+                                  int duration, IPath *path, int ease_type,
+                                  CycleControl *control) {
+    PathTweenForm *form = new PathTweenForm(proxy, path);
     return new Tween(this, completer, form, duration, ease_type, control);
 }
