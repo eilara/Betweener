@@ -1,10 +1,10 @@
 
 #include "LinearPath.h"
 
-LinearPath::LinearPath(Vector<int,2> from, Vector<int,2> to) :
+LinearPath::LinearPath(Vector2i from, Vector2i to) :
     from(from), to(to), diff(to - from) {}
 
-Vector<int,2> LinearPath::solve(float t) {
+Vector2i LinearPath::solve(float t) {
     return from + diff * t;
 }
 

@@ -2,16 +2,16 @@
 #ifndef LINEARPATH_H
 #define LINEARPATH_H
 
-#include "Vector.h"
+#include "VectorTypes.h"
 #include "IPath.h"
 
-class LinearPath : public IPath{
+class LinearPath : public IPath {
 
     public:
-        LinearPath(Vector<int,2> from, Vector<int,2> to);
-        Vector<int,2> solve(float t);
+        LinearPath(Vector2i from, Vector2i to);
+        Vector2i solve(float t);
     private:
-        Vector<int,2> from, to, diff;
+        Vector2i from, to, diff;
 
 };
 

@@ -2,13 +2,13 @@
 #ifndef IPATH_H
 #define IPATH_H
 
-#include "Vector.h"
+#include "VectorTypes.h"
 
 class IPath {
 
     public:
         virtual ~IPath() {}
-        virtual Vector<int,2> solve(float t) = 0;
+        virtual Vector2i solve(float t) = 0;
 
 };
 
