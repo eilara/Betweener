@@ -63,6 +63,13 @@ Vector<float,DIM> operator* (const Vector<float,DIM>& t, float k) {
     return res;
 }
 
+template<int DIM>
+Vector<int,DIM> operator* (const Vector<float,DIM>& t, int k) {
+    Vector<int,DIM> res;
+    for (unsigned i=0; i<DIM; ++i) { res[i] = (int) round(t[i] * (float) k); }
+    return res;
+}
+
 template<typename T,int DIM>
 Vector<T,DIM> operator/ (const Vector<T,DIM>& t, float k) {
     Vector<T,DIM> res;
