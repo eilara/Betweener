@@ -86,4 +86,13 @@ std::ostream& operator<< (std::ostream& os, const Vector<T,DIM>& t)
     return os;
 }
 
+template<typename T,int DIM>
+float distance (const Vector<T,DIM>& lhs, const Vector<T,DIM>& rhs) {
+    Vector<T,DIM> diff = lhs - rhs;
+    float d = 0;
+    for (unsigned i=0; i<DIM; ++i) d += diff[i] * diff[i];
+    return sqrt(d);
+}
+
+
 #endif

@@ -13,6 +13,8 @@ SOURCES     = Vector.cpp                    \
 				IPath.cpp                   \
 				LinearPath.cpp              \
 				CircularPath.cpp            \
+				PolylineSegment.cpp         \
+				PolylinePath.cpp            \
 				PathTweenForm.cpp           \
 				Tween.cpp
 LIB         = libbetweener.so

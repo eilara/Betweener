@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <vector>
 #include "Types.h"
 #include "Vector.h"
 #include "VectorTypes.h"
@@ -12,6 +13,7 @@
 #include "Timeline.h"
 #include "Ticker.h"
 #include "LinearTweenForm.h"
+#include "PolylinePath.h"
 #include "Tween.h"
 #include "tap_lib.h"
 
@@ -172,9 +174,12 @@ void test_Tween() { // 2 tests
     Tween tween(&timeline, completer, form, 10, EaseLinear, control);
 
     tween.start(1);
-    timeline.tick(3);
 
+    timeline.tick(3);
     ok(proxy->last_value[1] == 30, "tick 3");
+
+    timeline.tick(4);
+    ok(proxy->last_value[1] == 40, "tick 4");
 
     timeline.tick(12);
     ok(completer->last_complete_time == 11, "complete");
@@ -211,8 +216,33 @@ void test_tween_int() { // 1 test
 
 // -----------------------------------------------------------------------------
 
+void test_tween_path_polyline() { // 7 tests
+    diag("tween_int");
+    std::vector<Vector2i> points(4);
+    Vector2i p1 = { {  0,   0} };
+    Vector2i p2 = { {100,   0} };
+    Vector2i p3 = { {100, 100} };
+    Vector2i p4 = { {  0, 100} };
+    points[0]   = p1;
+    points[1]   = p2;
+    points[2]   = p3;
+    points[3]   = p4;
+
+    PolylinePath path(points);
+    ok(path.solve(-1.0)[0] == -300, "tick -1.0");
+    ok(path.solve( 0.0)[1] ==    0, "tick  0.0");
+    ok(path.solve( 0.1)[0] ==   30, "tick  0.1");
+    ok(path.solve( 0.4)[1] ==   20, "tick  0.4");
+    ok(path.solve( 0.9)[0] ==   30, "tick  0.9");
+    ok(path.solve( 1.0)[1] ==  100, "tick  1.0");
+    ok(path.solve( 1.1)[0] ==  -30, "tick  1.1");
+}
+
+
+// -----------------------------------------------------------------------------
+
 int main() {
-    plan_tests(9 + 4 + 4 + 4 + 2 + 1);
+    plan_tests(9 + 4 + 4 + 4 + 3 + 1 + 7);
 
     test_Vector();
     test_Timeline();
@@ -220,6 +250,7 @@ int main() {
     test_LinearTweenForm();
     test_Tween();
     test_tween_int();
+    test_tween_path_polyline();
 
     return 0;
 }
