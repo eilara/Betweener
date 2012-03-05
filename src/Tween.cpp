@@ -50,6 +50,10 @@ void Tween::resume(Uint32 now) {
     pause_start_time = 0;
 }
 
+Uint32 Tween::get_cycle_start_time() {
+    return cycle_start_time;
+}
+
 void Tween::on_tick(Uint32 now) {
     bool is_complete = 0;
     Uint32 elapsed = now - cycle_start_time - total_pause_time;
