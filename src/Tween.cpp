@@ -1,6 +1,5 @@
 
 #include <stdlib.h>
-#include <iostream>
 #include "Tween.h"
 #include "easing.h"
 

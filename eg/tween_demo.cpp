@@ -19,7 +19,7 @@
 
 using namespace std;
 
-typedef LinearTweenForm<int,2> LinearTweenForm2i;
+typedef LinearTweenForm<int,2,false> LinearTweenForm2i;
 
 // -----------------------------------------------------------------------------
 
@@ -217,7 +217,7 @@ void test_tween_int() { // 1 test
 // -----------------------------------------------------------------------------
 
 void test_tween_path_polyline() { // 7 tests
-    diag("tween_int");
+    diag("tween_path_polyline");
     std::vector<Vector2i> points(4);
     Vector2i p1 = { {  0,   0} };
     Vector2i p2 = { {100,   0} };
