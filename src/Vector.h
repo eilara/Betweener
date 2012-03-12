@@ -49,6 +49,7 @@ Vector<T,DIM> operator- (const Vector<T,DIM>& lhs, const Vector<T,DIM>& rhs) {
     return res;
 }
 
+// * on int vector and float k to int vector
 template<int DIM>
 Vector<int,DIM> operator* (const Vector<int,DIM>& t, float k) {
     Vector<int,DIM> res;
@@ -56,6 +57,7 @@ Vector<int,DIM> operator* (const Vector<int,DIM>& t, float k) {
     return res;
 }
 
+// * on float vector and float k to float vector
 template<int DIM>
 Vector<float,DIM> operator* (const Vector<float,DIM>& t, float k) {
     Vector<float,DIM> res;
@@ -63,6 +65,20 @@ Vector<float,DIM> operator* (const Vector<float,DIM>& t, float k) {
     return res;
 }
 
+// * on char vector and float k
+template<int DIM>
+Vector<char,DIM> operator* (const Vector<char,DIM>& t, float k) {
+    Vector<char,DIM> res;
+    for (unsigned i=0; i<DIM; ++i) {
+        int v = (int) round(k * (float) t[i]);
+        res[i] = v > 255? 255:
+                 v <   0?   0:
+                            v;
+    }
+    return res;
+}
+
+// * on float vector and int k to int vector
 template<int DIM>
 Vector<int,DIM> operator* (const Vector<float,DIM>& t, int k) {
     Vector<int,DIM> res;
