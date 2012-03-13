@@ -65,19 +65,6 @@ Vector<float,DIM> operator* (const Vector<float,DIM>& t, float k) {
     return res;
 }
 
-// * on char vector and float k
-template<int DIM>
-Vector<char,DIM> operator* (const Vector<char,DIM>& t, float k) {
-    Vector<char,DIM> res;
-    for (unsigned i=0; i<DIM; ++i) {
-        int v = (int) round(k * (float) t[i]);
-        res[i] = v > 255? 255:
-                 v <   0?   0:
-                            v;
-    }
-    return res;
-}
-
 // * on float vector and int k to int vector
 template<int DIM>
 Vector<int,DIM> operator* (const Vector<float,DIM>& t, int k) {

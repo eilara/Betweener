@@ -34,7 +34,7 @@ class Timeline : public IClock {
                                 int duration, IPath *path, int ease_type,
                                 CycleControl *control);
 
-        Tween *build_rgba_tween(IProxy<char,4> *proxy, ICompleter *completer,
+        Tween *build_rgba_tween(IProxy<int,4> *proxy, ICompleter *completer,
                                 int duration, Vector4c from, Vector4c to,
                                 int ease_type, CycleControl *control);
 

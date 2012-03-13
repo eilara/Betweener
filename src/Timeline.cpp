@@ -10,7 +10,7 @@ using namespace std;
 typedef LinearTweenForm<int  ,1,false> LinearIntForm;
 typedef LinearTweenForm<int  ,1,true>  LinearIntFormFloored;
 typedef LinearTweenForm<float,1,false> LinearFloatForm;
-typedef LinearTweenForm<char ,4,false> LinearRgbaForm;
+typedef LinearTweenForm<int ,4,false> LinearRgbaForm;
 
 Timeline::Timeline() : tickers() {
 }
@@ -70,7 +70,7 @@ Tween *Timeline::build_path_tween(IProxy<int,2> *proxy, ICompleter *completer,
     return new Tween(this, completer, form, duration, ease_type, control);
 }
 
-Tween *Timeline::build_rgba_tween(IProxy<char,4> *proxy, ICompleter *completer,
+Tween *Timeline::build_rgba_tween(IProxy<int,4> *proxy, ICompleter *completer,
                                   int duration, Vector4c from, Vector4c to,
                                   int ease_type, CycleControl *control) {
     LinearRgbaForm *form = new LinearRgbaForm(proxy, from, to);
