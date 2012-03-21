@@ -16,6 +16,8 @@ SOURCES     = Vector.cpp                    \
 				PolylineSegment.cpp         \
 				PolylinePath.cpp            \
 				PathTweenForm.cpp           \
+				ISeekerTarget.cpp           \
+				Seeker.cpp                  \
 				Tween.cpp
 LIB         = libbetweener.so
 INCLUDEDIRS =
